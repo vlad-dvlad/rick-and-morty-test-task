@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
-  CharactersApiResponse,
   ICharacter,
   ICharactersPayload,
 } from '../../entities/character.types';

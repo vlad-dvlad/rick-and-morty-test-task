@@ -1,10 +1,13 @@
+import { Route, Routes } from 'react-router';
 import Characters from './components/characters';
+import SingleCharacter from './components/single-character';
 
 const App = () => {
   return (
-    <div>
-      <Characters />
-    </div>
+    <Routes>
+        <Route path='/' element={<Characters />} />
+        <Route path='/chracter/:id' element={<SingleCharacter />} />
+    </Routes>
   );
 };
 
