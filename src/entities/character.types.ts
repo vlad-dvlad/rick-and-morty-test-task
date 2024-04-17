@@ -1,3 +1,5 @@
+import { ApiResponseInfo } from '../shared/api';
+
 export interface ICharacter {
   id: number;
   name: string;
@@ -17,4 +19,15 @@ export interface ICharacter {
   episode: string[]; // Array of URLs
   url: string; // URL
   created: string; // Date or timestamp
+}
+
+export interface CharactersApiResponse {
+  results: ICharacter[];
+  info: ApiResponseInfo;
+}
+
+export interface ICharactersPayload {
+  data: ICharacter[];
+  count: number;
+  pages: number;
 }

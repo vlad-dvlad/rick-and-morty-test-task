@@ -1,15 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ICharacter } from '../../entities/character.types';
+import {
+  CharactersApiResponse,
+  ICharacter,
+  ICharactersPayload,
+} from '../../entities/character.types';
 import { fetchCharacters } from './actions';
 
 interface CharactersState {
   data: ICharacter[];
+  pages: number;
+  count: number;
   isLoading: boolean;
   error: string;
 }
 
 const initialState: CharactersState = {
   data: [],
+  pages: 0,
+  count: 0,
   isLoading: false,
   error: '',
 };
@@ -22,13 +30,17 @@ export const charactersSlice = createSlice({
     builder
       .addCase(fetchCharacters.pending.type, (state) => {
         state.isLoading = true;
+        state.pages = 0;
+        state.count = 0;
       })
       .addCase(
         fetchCharacters.fulfilled.type,
-        (state, action: PayloadAction<ICharacter[]>) => {
+        (state, action: PayloadAction<ICharactersPayload>) => {
           state.isLoading = false;
           state.error = '';
-          state.data = action.payload;
+          state.data = action.payload.data;
+          state.count = action.payload.count;
+          state.pages = action.payload.pages;
         }
       )
       .addCase(
@@ -36,7 +48,12 @@ export const charactersSlice = createSlice({
         (state, action: PayloadAction<string>) => {
           state.isLoading = false;
           state.error = action.payload;
+          state.count = 0;
+          state.pages = 0;
+          state.data = [];
         }
       );
   },
 });
+
+export default charactersSlice.reducer;

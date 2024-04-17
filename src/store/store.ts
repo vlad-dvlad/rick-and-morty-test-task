@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import characters from './characters';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  characters,
+});
 
 export const setupStore = () => {
   return configureStore({
