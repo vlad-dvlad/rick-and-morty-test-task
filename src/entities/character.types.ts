@@ -1,4 +1,4 @@
-import { ApiResponseInfo } from '../shared/api';
+import { ApiResponseInfo } from "../shared/types";
 
 export interface ICharacter {
   id: number;
