@@ -1,26 +1,21 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../shared/hooks';
+import { useAppSelector } from '../../shared/hooks';
 import CharactersTable from './characters-table';
-import { fetchCharacters } from '../../store/characters/actions';
 import { getCharacters } from '../../store/selectors';
 import s from './styles.module.scss';
 import classNames from 'classnames/bind';
 import Searchbar from '../searchbar';
+import Error from '../../shared/components/error';
 
 const cx = classNames.bind(s);
 
 const Characters = () => {
-  const dispatch = useAppDispatch();
-  const { data, count, pages } = useAppSelector(getCharacters);
-
-  useEffect(() => {
-    dispatch(fetchCharacters({ count: 10, page: 1 }));
-  }, []);
+  const { data, error, isLoading } = useAppSelector(getCharacters);
 
   return (
     <div className={cx('content')}>
       <Searchbar />
-      {data && <CharactersTable list={data} />}
+      {data && !error && <CharactersTable list={data} />}
+      {error && <Error message={error} />}
     </div>
   );
 };

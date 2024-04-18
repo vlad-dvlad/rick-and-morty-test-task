@@ -3,17 +3,17 @@ import { apiClient } from '../../shared/api';
 import { CharactersApiResponse } from '../../entities/character.types';
 
 type IParams = {
-  page: number;
-  count: number;
+  page?: number;
+  name?: string;
 };
 
 export const fetchCharacters = createAsyncThunk(
   'characters/fetchAll',
   async (params: IParams, thunkApi) => {
     try {
-      const { page, count } = params;
       const response = await apiClient.get<CharactersApiResponse>(
-        `/character/?page=${1}`
+        '/character/',
+        { params }
       );
       return {
         data: response.data.results,
