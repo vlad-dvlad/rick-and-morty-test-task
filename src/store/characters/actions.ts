@@ -21,7 +21,7 @@ export const fetchCharacters = createAsyncThunk(
         count: response.data.info.count,
       };
     } catch (e) {
-      return thunkApi.rejectWithValue('Error! Failed to fetch characters');
+      return thunkApi.rejectWithValue('Error! Failed to fetch characters. Try to chande search value');
     }
   }
 );
