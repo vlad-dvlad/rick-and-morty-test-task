@@ -1,23 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICharacter } from "../../entities/character.types";
 import { getSingleCharacter } from "./actions";
+import { Nullable } from "../../shared/types";
+import { error } from "console";
 
 interface SingleCharacterState {
-    data: ICharacter;
+    data: Nullable<ICharacter>;
     isLoading: boolean;
     error: string;
 }
 
 const initialState: SingleCharacterState = {
-    data: {} as ICharacter,
+    data: null,
     isLoading: false,
     error: ''
 }
 
 const singleCharacterSlice = createSlice({
-    name: 'single-character',
+    name: 'character',
     initialState,
-    reducers: {},
+    reducers: {
+        clearState: (state) => {
+            state.data = null;
+            state.error = '';
+            state.isLoading = false;
+        } 
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getSingleCharacter.pending.type, (state) => {
@@ -35,5 +43,7 @@ const singleCharacterSlice = createSlice({
             })
     }
 })
+
+export const { clearState } = singleCharacterSlice.actions;
 
 export default singleCharacterSlice.reducer;

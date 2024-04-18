@@ -1,46 +1,49 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { ICharacter } from "../../entities/character.types";
-import { apiClient } from "../../shared/api";
-import { Nullable } from "../../shared/types";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import { getSingleCharacter } from "../../store/single-character/actions";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks";
+import { getSingleCharacterInfo } from "../../store/selectors";
+import styles from './styles.module.scss';
+import classNames from "classnames/bind";
+import { clearState } from "../../store/single-character";
 
-type CharacterInfo = Pick<ICharacter, "name" | "status" | "image" | "species" | "gender" | "origin" | "location">
+const cx = classNames.bind(styles);
 
 const SingleCharacter = () => {
     const { id } = useParams();
-    const [characterInfo, setCharacterInfo] = useState<Nullable<CharacterInfo>>();
-
-    const fetchSingleuser = async (id: number) => {
-        try {
-            const response = await apiClient.get<ICharacter>(`/character/${id}`)
-            const {
-                name, status, image,
-                species, gender, origin, location
-            } = response.data;
-
-            setCharacterInfo({
-                name, status, image,
-                species, gender, origin, location
-            })
-        } catch (e) {
-            console.log(e)
-        }
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { data: characterInfo } = useAppSelector(getSingleCharacterInfo)
+   
+    const handleClick = () => {
+        navigate('/')
+        dispatch(clearState())
     }
 
     useEffect(() => {
         if(id) {
-            fetchSingleuser(+id)
+            dispatch(getSingleCharacter(+id))
         }
     }, [id])
     return (
-        <div>
-            {characterInfo?.name}
-            {characterInfo?.gender}
-            {characterInfo?.location.name}
-            {characterInfo?.origin.name}
-            {characterInfo?.species}
-            {characterInfo?.status}
-            <img src={characterInfo?.image} alt="Image main"/>
+        <div className={cx('character__wrapper')}>
+            { characterInfo && (
+                <div className={cx('character__content')}>
+                    <div>
+                        <img src={characterInfo?.image} alt="Image main"/>
+                    </div>
+                    <div className={cx('character__info')}>
+                        <span className={cx('character__name')}><strong>{characterInfo?.name}</strong></span>
+                        <span className={cx('character__text')}><strong>Gender:</strong> {characterInfo?.gender}</span>
+                        <span className={cx('character__text')}><strong>Location:</strong> {characterInfo?.location.name}</span>
+                        <span className={cx('character__text')}><strong>Origin:</strong> {characterInfo?.origin.name}</span>
+                        <span className={cx('character__text')}><strong>Species:</strong> {characterInfo?.species}</span>
+                        <span className={cx('character__text')}><strong>Status:</strong> {characterInfo?.status}</span>
+                        <button onClick={handleClick}>Back</button>
+                    </div>
+
+                </div>
+            )}
         </div>
     );
 };

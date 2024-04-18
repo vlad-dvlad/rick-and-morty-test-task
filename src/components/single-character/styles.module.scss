@@ -1,0 +1,33 @@
+.character {
+    &__wrapper {
+        max-width: 900px;
+        margin: 50px auto;
+        background-color: #ffd296;
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+        padding: 20px 0 0 0 ;
+    }
+
+    &__name {
+        font-size: 28px;
+    }
+
+    &__text {
+        font-size: 20px;
+    }
+}
