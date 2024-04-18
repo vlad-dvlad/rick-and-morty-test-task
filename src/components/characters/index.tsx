@@ -5,6 +5,7 @@ import { fetchCharacters } from '../../store/characters/actions';
 import { getCharacters } from '../../store/selectors';
 import s from './styles.module.scss';
 import classNames from 'classnames/bind';
+import Searchbar from '../searchbar';
 
 const cx = classNames.bind(s);
 
@@ -18,6 +19,7 @@ const Characters = () => {
 
   return (
     <div className={cx('content')}>
+      <Searchbar />
       {data && <CharactersTable list={data} />}
     </div>
   );

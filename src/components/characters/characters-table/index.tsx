@@ -21,19 +21,15 @@ const CharactersTable: FC<IProps> = ({ list }) => {
         <div>Image</div>
       </div>
       {list.map((item) => (
-        <Link
-          to={`/chracter/${item.id}`}
-          key={item.id}
-          className={cx('table__row')}
-        >
+        <div key={item.id} className={cx('table__row')}>
           <div>{item.id}</div>
-          <div>{item.name}</div>
+          <Link to={`/chracter/${item.id}`}>{item.name}</Link>
           <div>{item.status}</div>
           <div>{item.species}</div>
           <div>
             <img src={item.image} alt="Image" />
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
