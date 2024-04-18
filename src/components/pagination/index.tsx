@@ -52,7 +52,7 @@ const Pagination: FC<IProps> = ({
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
           return (
-            <li key={pageNumber} className={cx('pagination-item', 'dots')}>
+            <li key={pageNumber + Math.random().toString()} className={cx('pagination-item', 'dots')}>
               &#8230;
             </li>
           );
@@ -63,7 +63,7 @@ const Pagination: FC<IProps> = ({
             className={cx('pagination-item', {
               selected: pageNumber === currentPage,
             })}
-            key={pageNumber}
+            key={pageNumber + Math.random().toString()}
             onClick={() => onPageChange(pageNumber as number)}
           >
             {pageNumber}

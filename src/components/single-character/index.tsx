@@ -6,6 +6,8 @@ import { getSingleCharacterInfo } from '../../store/selectors';
 import styles from './styles.module.scss';
 import classNames from 'classnames/bind';
 import { clearState } from '../../store/single-character';
+import Loader from '../../shared/components/loader';
+import Error from '../../shared/components/error';
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +15,7 @@ const SingleCharacter = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { data: characterInfo } = useAppSelector(getSingleCharacterInfo);
+  const { data: characterInfo, isLoading, error } = useAppSelector(getSingleCharacterInfo);
 
   const handleClick = () => {
     navigate('/');
@@ -25,6 +27,10 @@ const SingleCharacter = () => {
       dispatch(getSingleCharacter(+id));
     }
   }, [id]);
+
+  if(isLoading) return <Loader />
+  if(error) return <Error message={error} />
+
   return (
     <div className={cx('wrapper')}>
       <button onClick={handleClick}>Back to main page</button>

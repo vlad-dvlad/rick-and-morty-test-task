@@ -18,6 +18,7 @@ const Characters = () => {
   const { data, error, isLoading, count } = useAppSelector(getCharacters);
   const [debouncedValue, value, setValue] = useDebounce('', 1000);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  
   const page = Math.floor(((currentPage - 1) * 10) / 20 + 1)
   const firstPageIndex = currentPage % 2 ? 0 : 10;
   const lastPageIndex = currentPage % 2 ? 10 : 20;
