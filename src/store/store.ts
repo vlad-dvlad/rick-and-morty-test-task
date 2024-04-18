@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import characters from './characters';
+import singleCharacter from './single-character';
 
 const rootReducer = combineReducers({
   characters,
+  singleCharacter
 });
 
 export const setupStore = () => {
