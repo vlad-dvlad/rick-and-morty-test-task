@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import {
-  ICharacter,
-  ICharactersPayload,
-} from '../../entities/character.types';
+import { ICharacter, ICharactersPayload } from '../../entities/character.types';
 import { fetchCharacters } from './actions';
 
 interface CharactersState {

@@ -8,7 +8,6 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(s);
 
-
 const Characters = () => {
   const dispatch = useAppDispatch();
   const { data, count, pages } = useAppSelector(getCharacters);
@@ -19,7 +18,7 @@ const Characters = () => {
 
   return (
     <div className={cx('content')}>
-      { data && <CharactersTable list={data} /> }
+      {data && <CharactersTable list={data} />}
     </div>
   );
 };

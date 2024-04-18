@@ -4,7 +4,7 @@ import singleCharacter from './single-character';
 
 const rootReducer = combineReducers({
   characters,
-  singleCharacter
+  singleCharacter,
 });
 
 export const setupStore = () => {

@@ -5,14 +5,16 @@ import { CharactersApiResponse } from '../../entities/character.types';
 type IParams = {
   page: number;
   count: number;
-}
+};
 
 export const fetchCharacters = createAsyncThunk(
   'characters/fetchAll',
   async (params: IParams, thunkApi) => {
     try {
       const { page, count } = params;
-      const response = await apiClient.get<CharactersApiResponse>(`/character/?page=${1}`);
+      const response = await apiClient.get<CharactersApiResponse>(
+        `/character/?page=${1}`
+      );
       return {
         data: response.data.results,
         pages: response.data.info.pages,

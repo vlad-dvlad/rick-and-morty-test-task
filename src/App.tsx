@@ -5,8 +5,8 @@ import SingleCharacter from './components/single-character';
 const App = () => {
   return (
     <Routes>
-        <Route path='/' element={<Characters />} />
-        <Route path='/chracter/:id' element={<SingleCharacter />} />
+      <Route path="/" element={<Characters />} />
+      <Route path="/chracter/:id" element={<SingleCharacter />} />
     </Routes>
   );
 };
