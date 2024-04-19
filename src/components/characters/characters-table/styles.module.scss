@@ -29,6 +29,9 @@
     @media (max-width: 475px) {
       font-size: 12px;
     }
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    }
     div,
     a {
       border-right: 1px solid #000;
@@ -41,6 +44,12 @@
       height: 70px;
       @media (max-width: 1024px) {
         min-width: 60px;
+      }
+      @media (max-width: 768px) {
+        min-width: 60px;
+        &:first-child {
+          min-width: 30px;
+        }
       }
       &:last-child {
         border-right: none;

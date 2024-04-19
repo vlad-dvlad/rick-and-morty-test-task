@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { fetchCharacters } from '../../store/characters/actions';
 import { useDebounce } from '../../hooks/use-debounce';
 import Loader from '../../shared/components/loader';
+import { clearState } from '../../store/characters';
 
 const cx = classNames.bind(s);
 
@@ -60,6 +61,7 @@ const Characters = () => {
     dispatch(fetchCharacters({ name: debouncedValue, page }));
     return () => {
       saveSearchData(debouncedValue, currentPage.toString());
+      dispatch(clearState())
     };
   }, [debouncedValue, value, page]);
 
@@ -85,7 +87,7 @@ const Characters = () => {
             })}
           >
             {data.slice(0, 5).map((item) => (
-              <div key={item.id} onClick={() => setValue(item.name)}>
+              <div key={item.id} onClick={(e) => setValue(item.name)}>
                 {item.name}
               </div>
             ))}

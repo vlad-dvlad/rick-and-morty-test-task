@@ -21,7 +21,13 @@ const initialState: CharactersState = {
 export const charactersSlice = createSlice({
   name: 'characters',
   initialState,
-  reducers: {},
+  reducers: {
+    clearState: (state) => {
+      state.data = [];
+      state.error = '';
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCharacters.pending.type, (state) => {
@@ -51,5 +57,7 @@ export const charactersSlice = createSlice({
       );
   },
 });
+
+export const { clearState } = charactersSlice.actions;
 
 export default charactersSlice.reducer;
