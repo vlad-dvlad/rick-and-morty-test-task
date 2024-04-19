@@ -25,12 +25,14 @@ const Characters = () => {
   const page = Math.floor(((currentPage - 1) * 10) / 20 + 1);
   const firstPageIndex = currentPage % 2 ? 0 : 10;
   const lastPageIndex = currentPage % 2 ? 10 : 20;
-  const closeHint = data.slice(0, 5).some((item) => item.name === debouncedValue);
+  const closeHint = data
+    .slice(0, 5)
+    .some((item) => item.name === debouncedValue);
 
   const handleChange = (searchValue: string) => {
     setCurrentPage(1);
     setValue(searchValue);
-    setForceCloseHint(false)
+    setForceCloseHint(false);
   };
 
   const saveSearchData = (value: string, page: string) => {
@@ -73,12 +75,20 @@ const Characters = () => {
             value={value}
             onChange={(e) => handleChange(e.target.value)}
           />
-          <div className={cx('searchbar__results', { hide: closeHint || forceCloseHint || data.length === 1 || data.length === 0 })}>
-            {
-              data.slice(0, 5).map((item) => (
-                <div key={item.id}  onClick={() => setValue(item.name)}>{item.name}</div>
-              ))
-            } 
+          <div
+            className={cx('searchbar__results', {
+              hide:
+                closeHint ||
+                forceCloseHint ||
+                data.length === 1 ||
+                data.length === 0,
+            })}
+          >
+            {data.slice(0, 5).map((item) => (
+              <div key={item.id} onClick={() => setValue(item.name)}>
+                {item.name}
+              </div>
+            ))}
           </div>
         </div>
       </OutsideClickHandler>
