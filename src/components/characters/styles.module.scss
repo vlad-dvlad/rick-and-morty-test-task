@@ -6,20 +6,32 @@
   flex-direction: column;
 }
 
-
 .searchbar {
-    max-width: 900px;
-    margin-bottom: 30px;
-  
-    &__input {
-      padding: 10px 20px 10px 8px;
-      border: 1px solid #999090;
-      width: 100%;
-      min-width: 280px;
-      border-radius: 10px;
-      background-color: #ebe1e1;
-      font-size: 16px;
-      transition: all 0.4s;
-    }
+  max-width: 900px;
+  margin-bottom: 30px;
+  position: relative;
+  &__input {
+    padding: 10px 20px 10px 8px;
+    border: 1px solid #999090;
+    width: 100%;
+    min-width: 280px;
+    background-color: #ebe1e1;
+    font-size: 16px;
+    transition: all 0.4s;
   }
-  
+
+  &__results {
+    position: absolute;
+    background-color: #b79d9d;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    &.hide {
+      display: none;
+    }
+    width: 100%;
+    padding: 10px 20px 10px 8px;
+    z-index: 5;
+    cursor: pointer;
+  }
+}

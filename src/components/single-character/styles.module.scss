@@ -4,7 +4,7 @@
   margin: 50px auto;
   justify-content: space-between;
   align-items: center;
-  
+
   @media (max-width: 1024px) {
     justify-content: start;
     row-gap: 20px;
@@ -41,11 +41,11 @@
       height: 270px;
     }
     @media (max-width: 768px) {
-        column-gap: 0;
-        img {
-            width: 80px;
-            height: 80px;
-        }
+      column-gap: 0;
+      img {
+        width: 80px;
+        height: 80px;
+      }
     }
   }
 
@@ -55,22 +55,21 @@
     row-gap: 15px;
     padding: 20px 0 0 0;
     @media (max-width: 768px) {
-        padding-top: 0;
+      padding-top: 0;
     }
   }
 
   &__name {
     font-size: 28px;
     @media (max-width: 768px) {
-        font-size: 22px;
+      font-size: 22px;
     }
   }
 
   &__text {
     font-size: 20px;
     @media (max-width: 768px) {
-        font-size: 18px;
+      font-size: 18px;
     }
   }
 }
-

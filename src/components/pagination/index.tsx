@@ -47,12 +47,15 @@ const Pagination: FC<IProps> = ({
         })}
         onClick={onPrevious}
       >
-        <div className={cx("arrow left")} />
+        <div className={cx('arrow left')} />
       </li>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
           return (
-            <li key={pageNumber + Math.random().toString()} className={cx('pagination-item', 'dots')}>
+            <li
+              key={pageNumber + Math.random().toString()}
+              className={cx('pagination-item', 'dots')}
+            >
               &#8230;
             </li>
           );
@@ -76,7 +79,7 @@ const Pagination: FC<IProps> = ({
         })}
         onClick={onNext}
       >
-        <div className={cx("arrow right")} />
+        <div className={cx('arrow right')} />
       </li>
     </ul>
   );

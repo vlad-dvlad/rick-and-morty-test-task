@@ -15,7 +15,11 @@ const SingleCharacter = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { data: characterInfo, isLoading, error } = useAppSelector(getSingleCharacterInfo);
+  const {
+    data: characterInfo,
+    isLoading,
+    error,
+  } = useAppSelector(getSingleCharacterInfo);
 
   const handleClick = () => {
     navigate('/');
@@ -28,8 +32,8 @@ const SingleCharacter = () => {
     }
   }, [id]);
 
-  if(isLoading) return <Loader />
-  if(error) return <Error message={error} />
+  if (isLoading) return <Loader />;
+  if (error) return <Error message={error} />;
 
   return (
     <div className={cx('wrapper')}>
